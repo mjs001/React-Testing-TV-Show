@@ -7,7 +7,10 @@ const fetchShow = () => {
     )
     .then((res) => {
       return res;
+    })
+    .catch((err) => {
+      return console.log(err);
     });
 };
 
-export default fetchShow;
+export { fetchShow };
