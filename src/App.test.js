@@ -688,13 +688,12 @@ const seasonsData = {
     ],
   },
 };
-// };
 
 test("renders once loaded", async () => {
   act(() => {
     mockFetchShow.mockResolvedValueOnce(seasonsData);
   });
-  const { getByPlaceholderText } = render(<App data={seasonsData} />);
+  const { getByPlaceholderText } = render(<App />);
   await waitFor(() => {
     const selection = getByPlaceholderText("Select an option");
     selection.value = "Season 2";

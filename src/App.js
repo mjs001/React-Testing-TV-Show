@@ -28,7 +28,7 @@ export default function App() {
   }, []);
 
   if (!show) {
-    return <h2>Fetching data...</h2>;
+    return <h2 className="fetching">Fetching data...</h2>;
   }
 
   return (
