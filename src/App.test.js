@@ -1,5 +1,10 @@
 import React from "react";
-import { render, fireEvent, waitFor } from "@testing-library/react";
+import {
+  render,
+  fireEvent,
+  waitFor,
+  waitForElementToBeRemoved,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "./App";
 import { screen } from "@testing-library/dom";
@@ -693,8 +698,8 @@ test("renders once loaded", async () => {
   act(() => {
     mockFetchShow.mockResolvedValueOnce(seasonsData);
   });
-  const { getByPlaceholderText } = render(<App />);
-  await waitFor(() => {
+  const { getByPlaceholderText, queryByText } = render(<App />);
+  waitForElementToBeRemoved(queryByText(/Fetching data.../i)).then(() => {
     const selection = getByPlaceholderText("Select an option");
     selection.value = "Season 2";
     expect(selection).toHaveValue("Season 2");
